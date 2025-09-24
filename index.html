@@ -1,11 +1,72 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Hallo GitHub Pages</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #f0f0f0;
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .spacer {
+      height: 100vh;
+      background: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .animated {
+      background: #4cafef;
+      color: white;
+      transform: translateX(-100%); /* Startposition links außerhalb */
+    }
+  </style>
 </head>
 <body>
-  <h1>Meine erste Seite auf GitHub Pages 🚀</h1>
-  <p>Es funktioniert!</p>
+  <div class="spacer">Scroll nach unten</div>
+
+  <section class="animated">
+    Ich fliege rein!
+  </section>
+
+  <div class="spacer">Und wieder hochscrollen…</div>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.fromTo(
+      ".animated",
+      { x: "-100%", opacity: 0 },
+      {
+        x: "0%",
+        opacity: 1,
+        duration: 4,
+        scrollTrigger: {
+
+          trigger: ".animated",
+          toggleActions: "restart pause reverse pause",
+          markers: true,
+          end:"bottom top" 
+
+
+        }
+      }
+    );
+  </script>
 </body>
 </html>
